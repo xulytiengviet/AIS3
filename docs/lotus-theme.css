@@ -525,3 +525,38 @@ details p{color:#6a536d;padding:3px 18px 17px}
   .btn,.card{transition:none}
   .btn:hover,.card:hover{transform:none}
 }
+
+/* accessibility and embedded demo refinements */
+.skip-link{
+  position:fixed;top:-100px;left:16px;z-index:30;
+  padding:10px 16px;border-radius:0 0 12px 12px;
+  color:#fff;background:#7b326c;
+  text-decoration:none;font-weight:750;
+}
+.skip-link:focus{top:0;color:#fff}
+.kicker:before{
+  content:"✦";color:#c774aa;margin-right:8px;font-size:12px
+}
+#model-pill{display:inline-block}
+#screen-heading{color:#f5bfdc}
+.panel[style*="background:#07101c"]{
+  background:linear-gradient(145deg,#41264f,#2a1d3c)!important;
+  border-color:#8b5987;
+  box-shadow:inset 0 1px #ffffff19;
+}
+#screen-content{color:#f9e6f4!important;white-space:pre-wrap}
+#screen-heading{letter-spacing:.09em}
+#progress-label{font-weight:600}
+a.card:focus-visible{border-color:#a04c80}
+@media print{
+  body{background:#fff;color:#111}
+  .head,.mobile-jump,.sidebar,.actions,.hero-meta,.lotus-symbol,.board-stamp,.terminal .bar button,.footer{display:none!important}
+  .hero{grid-template-columns:1fr;display:block}
+  .board{display:none}
+  .layout{display:block}
+  .block,.step,.card,.panel,.terminal{break-inside:avoid;box-shadow:none}
+  .terminal{background:#fff;border:1px solid #777}
+  .terminal pre{color:#222;background:#fff}
+  .step,.card,.panel{background:#fff}
+  a{text-decoration:underline;color:#111}
+}
