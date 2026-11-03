@@ -46,7 +46,17 @@ uv run python -m research.tinystories.train_vi \
 
 ## 4. Phương án B – fine-tune checkpoint PyTorch
 
-Fine-tune chỉ hợp lệ nếu có checkpoint đáng tin cậy `runs/*.pt` với **cùng tokenizer SHA-256 và kiến trúc**. File release `artifacts/tinystories/model.bin` đã lượng tử hóa int4 **không** là checkpoint để fine-tune. Lệnh mẫu dưới đây cần checkpoint do bạn tự tạo/tải từ nguồn tin cậy, **không có sẵn trong clone mới**.
+Trường hợp chưa có checkpoint PyTorch gốc, hãy tạo một checkpoint từ mã AIS3 hiện tại và bộ tokenizer tiếng Anh:
+
+```bash
+uv run python -m research.tinystories.prepare --vocab 32768
+uv run python -m research.tinystories.train --arm ple --vocab 32768 \
+  --d-model 96 --n-layers 6 --n-heads 4 --ple-dim 128 \
+  --target-core 559000 --steps 3000 --tag en-base --seed 0
+```
+
+Chương trình sẽ sinh `runs/ple-en-base-s0.pt`, chứa tokenizer SHA-256. Dữ liệu tiếng Anh gốc phải được tải lần đầu; đây là một bước huấn luyện tốn tài nguyên chứ không phải file checkpoint đi kèm repo.
+Fine-tune chỉ hợp lệ nếu có checkpoint đáng tin cậy `runs/*.pt` với **cùng tokenizer SHA-256 và kiến trúc**. File release `artifacts/tinystories/model.bin` đã lượng tử hóa int4 **không** là checkpoint để fine-tune. Lệnh mẫu dưới đây cần checkpoint đã tạo ở bước trước hoặc từ nguồn tin cậy; **không có sẵn trong clone mới**.
 
 ```bash
 uv run python -m research.tinystories.prepare_vi \
@@ -54,7 +64,7 @@ uv run python -m research.tinystories.prepare_vi \
   --tokenizer data/tinystories/vocab-32768/tokenizer.json
 uv run python -m research.tinystories.train_vi \
   --data-dir data/vi_tinystories/vocab-32768 \
-  --init runs/ple-cleandeploy-s0.pt --steps 1500 --lr 0.0001 --tag vi-finetune
+  --init runs/ple-en-base-s0.pt --steps 1500 --lr 0.0001 --tag vi-finetune
 ```
 
 Không tắt kiểm tra tokenizer SHA. Muốn tokenizer Việt mới thì retrain từ đầu hoặc thiết kế riêng phương án ánh xạ embedding. Không mở `.pt` từ nguồn không tin cậy: PyTorch pickle có nguy cơ thực thi mã.
