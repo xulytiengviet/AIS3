@@ -35,7 +35,7 @@
 #include "display.h"
 #endif
 
-static const int PROMPT_IDS[] = {433, 447, 259, 405}; // "Once upon a time"
+// PROMPT_IDS is generated in vocab.h for the selected tokenizer and language.
 static const int N_GENERATE = 200;
 
 Model model;
