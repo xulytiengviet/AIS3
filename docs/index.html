@@ -129,7 +129,7 @@ $$('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{let el=documen
 const c=$$('#checkgrid input');c.forEach(x=>x.addEventListener('change',()=>{let n=c.filter(x=>x.checked).length;$('#progress').style.width=(100*n/c.length)+'%';$('#progress-label').textContent=n+'/'+c.length+' mục đã đánh dấu · Không lưu lên máy chủ.'}));
 const mobileJump=$('#jump-section');
 if(mobileJump){mobileJump.addEventListener('change',()=>{const target=document.querySelector(mobileJump.value);if(target){target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}})}
-const observer=new IntersectionObserver(es=>{for(let e of es)if(e.isIntersecting){$('.sidebar a').forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id)); if(mobileJump&&mobileJump.value!=='#'+e.target.id){mobileJump.value='#'+e.target.id;}}},{rootMargin:'-100px 0px -65% 0px'});$$('.block').forEach(s=>observer.observe(s));
+const observer=new IntersectionObserver(es=>{for(let e of es)if(e.isIntersecting){$$('.sidebar a').forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id)); if(mobileJump&&mobileJump.value!=='#'+e.target.id){mobileJump.value='#'+e.target.id;}}},{rootMargin:'-100px 0px -65% 0px'});$$('.block').forEach(s=>observer.observe(s));
 renderModel();renderOS();renderSuper();renderTrain();
 })();
 </script></body></html>
