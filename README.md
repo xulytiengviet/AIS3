@@ -3,6 +3,7 @@
 ## Hướng dẫn tiếng Việt / Vietnamese DIY guide
 
 - **Trang cài đặt trực quan:** [AIS3 Lab – ESP32-S3 AI, Super Mini và XiaoZhi](docs/index.html).
+- **KWS tiếng Việt & kiểm toán dữ liệu (nghiên cứu):** [Hướng dẫn MFCC/CNN, INT8 và chuẩn hóa văn bản](docs/VI_KWS.md). Mã nguồn huấn luyện mẫu: `research/kws_vi/` và `research/tinystories/{vi_text,audit_vi}.py`. Mô hình KWS mới chưa có firmware AIS3, cần port DSP/TFLite Micro và benchmark thiết bị.
 - **Tài liệu huấn luyện:** [Huấn luyện TinyStories tiếng Việt và DIY ESP32-S3](docs/VI_TRAINING.md).
 - **Chuẩn bị corpus tiếng Việt:** `uv run python -m research.tinystories.prepare_vi --input data/vi_stories.txt --vocab 32768`.
 - **Huấn luyện mô hình tiếng Việt:** `uv run python -m research.tinystories.train_vi --data-dir data/vi_tinystories/vocab-32768 --steps 3000 --tag vi-demo`.
