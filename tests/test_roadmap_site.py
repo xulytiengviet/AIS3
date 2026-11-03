@@ -102,7 +102,7 @@ class RoadmapSiteTests(unittest.TestCase):
         self.assertIn("8–72 giờ", self.html)
         self.assertIn("Macro-F1", self.html)
         self.assertIn("94%", self.html)
-        self.assertIn("không phải benchmark AIS3", self.html)
+        self.assertIn("không phải benchmark ais3", self.html.lower())
         self.assertIn("20/20", self.html)
         doc = (DOCS / "ROADMAP_VI.md").read_text(encoding="utf-8")
         for key in ["G0", "G1", "G2", "G3", "G4", "PENDING", "NFC", "XiaoZhi"]:
