@@ -84,7 +84,7 @@ Nếu cần một demo firmware tiếng Việt để nạp **ngay**, tham khảo
 
 ```bash
 git clone https://github.com/nguyenthaozzz/edge-ai-voice-control-esp32.git
-cd edge-ai-voice-control-esp32/Firmware
+cd edge-ai-voice-control-esp32/Firmware/Firmware-KWS-vietnamese-command
 # Đọc README và platformio.ini của thư mục firmware thực tế trước khi nạp:
 pio run
 pio run --target upload
