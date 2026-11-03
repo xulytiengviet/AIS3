@@ -1,5 +1,19 @@
 # Running a 28.9M parameter LLM on a microcontroller
 
+## Hướng dẫn tiếng Việt / Vietnamese DIY guide
+
+- **Trang cài đặt trực quan:** [AIS3 Lab – ESP32-S3 AI, Super Mini và XiaoZhi](docs/index.html).
+- **Tài liệu huấn luyện:** [Huấn luyện TinyStories tiếng Việt và DIY ESP32-S3](docs/VI_TRAINING.md).
+- **Chuẩn bị corpus tiếng Việt:** `uv run python -m research.tinystories.prepare_vi --input data/vi_stories.txt --vocab 32768`.
+- **Huấn luyện mô hình tiếng Việt:** `uv run python -m research.tinystories.train_vi --data-dir data/vi_tinystories/vocab-32768 --steps 3000 --tag vi-demo`.
+- **Xuất mô hình độc lập:** `uv run python -m research.tinystories.export ple-vi-demo-s0 --tokenizer data/vi_tinystories/vocab-32768/tokenizer.json --out-dir artifacts/vi_tinystories`.
+- **Nạp firmware với prompt tiếng Việt:** `ARTIFACTS=artifacts/vi_tinystories TINYSTORIES_PROMPT="Ngày xửa ngày xưa" scripts/deploy.sh tinystories`.
+
+**Important:** Vietnamese adaptation requires a real training corpus and a PyTorch checkpoint. The 4-bit released `model.bin` cannot be directly fine-tuned. The CLI scripts can train from scratch with a new Vietnamese tokenizer, or fine-tune a trusted `runs/*.pt` model with **exactly the same tokenizer SHA-256**. Existing benchmark numbers do not validate the new Vietnamese model. The built-in OLED font is ASCII-only, so use UTF-8 Serial for Vietnamese text.
+
+**Hardware is not interchangeable:** AIS3 TinyStories targets ESP32-S3 **N16R8 (16MB Flash/8MB PSRAM)**, whereas [ESP32-S3 Super Mini AI](https://github.com/Ngducok/esp32s3-Super-mini-AI) targets a **different** micro-model on 4MB Flash without PSRAM; [XiaoZhi Vietnam](https://github.com/Ngthhoang/xiaozhi-vn-ricky0611) is a separate voice assistant firmware. For board-specific wiring, builds, OTA and activation, follow the upstream project's documentation.
+
+
 <p align="center">
   <a href="https://x.com/slvDev">𝕏 slvDev</a> &nbsp;·&nbsp;
   <a href="https://www.linkedin.com/in/slvdev/">LinkedIn</a>
