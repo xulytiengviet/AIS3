@@ -7,6 +7,10 @@ on:
       - 'research/tinystories/train_vi.py'
       - 'firmware/esp32_tinystories/tools/generate_vocab.py'
       - 'tests/test_vi_pipeline.py'
+      - 'research/tinystories/vi_text.py'
+      - 'research/tinystories/audit_vi.py'
+      - 'research/kws_vi/**'
+      - 'tests/test_kws_vi.py'
       - '.github/workflows/vi-pipeline.yml'
   pull_request:
     paths:
@@ -14,6 +18,10 @@ on:
       - 'research/tinystories/train_vi.py'
       - 'firmware/esp32_tinystories/tools/generate_vocab.py'
       - 'tests/test_vi_pipeline.py'
+      - 'research/tinystories/vi_text.py'
+      - 'research/tinystories/audit_vi.py'
+      - 'research/kws_vi/**'
+      - 'tests/test_kws_vi.py'
   workflow_dispatch:
 
 permissions:
@@ -31,4 +39,6 @@ jobs:
       - name: Install lightweight test dependencies
         run: python -m pip install 'numpy>=2.5.1' 'tokenizers>=0.23.1'
       - name: Verify Vietnamese corpus split and UTF-8 ByteLevel decoder
-        run: python -m unittest discover -s tests -p 'test_vi_pipeline.py' -v
+        run: |-
+          python -m unittest discover -s tests -p 'test_vi_pipeline.py' -v
+          python -m unittest discover -s tests -p 'test_kws_vi.py' -v
