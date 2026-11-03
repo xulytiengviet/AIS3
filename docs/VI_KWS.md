@@ -19,6 +19,12 @@ KWS là **phân loại âm thanh**, không phải chuyển giọng nói thành v
 
 Để thử hệ thống đã có firmware thực tế, xem [Edge AI Voice Control](https://github.com/nguyenthaozzz/edge-ai-voice-control-esp32). Bo **ESP32-S3 N16R8**, micro INMP441 I2S, nguồn 3.3 V, relay/LED tùy chọn. Giữ đúng mapping GPIO của **project được chọn**, không ghép sơ đồ chân OLED của AIS3. Với relay kết nối điện lưới, chỉ thử bằng LED/nguồn thấp khi mới phát triển; lắp đặt điện lưới cần người đủ chuyên môn.
 
+### Thu giọng tiếng Việt ngay trên trang AIS3 (không tải server)
+
+Ở [AIS3 Sen Việt → Giọng nói KWS](https://xulytiengviet.github.io/AIS3/#voice-kws), chọn **ID người nói** và **nhãn lệnh**, bấm **Ghi mẫu 1 giây**, cấp quyền microphone, nghe lại và tải **WAV PCM16 mono 16 kHz**. Trình duyệt ghi khoảng 1,2 giây rồi lấy cửa sổ giữa 1 giây; khi lời nói nằm ngoài cửa sổ sẽ bị cắt. Hãy nói câu lệnh ngắn, kiểm tra lại file trước khi dùng cho huấn luyện. Mỗi tệp phải được chuyển vào đúng thư mục nhãn dưới `data/kws_vi/`. Không chia các lần ghi của cùng người nói sang hai tập khác nhau.
+
+Công cụ ghi âm là **dữ liệu huấn luyện**, không phải AI đang nhận diện. Toàn bộ xử lý và tệp WAV nằm trong trình duyệt, không gửi lên server AIS3. Không tự ghi âm người khác khi chưa có sự đồng ý. Chỉ hoạt động trên HTTPS/trình duyệt hỗ trợ Web Audio và MediaRecorder.
+
 ### Bộ dữ liệu huấn luyện mới cho module AIS3 (không có sẵn)
 
 Bố trí tệp WAV: **PCM 16-bit, mono, 16 kHz, đúng người nói**:
