@@ -18,11 +18,13 @@ from pathlib import Path
 import numpy as np
 from tokenizers import Tokenizer, decoders, models, pre_tokenizers, trainers
 
+from .vi_text import CleanOptions, load_replacements, normalize_text
+
 ROOT = Path(__file__).resolve().parents[2]
 EOT = "<|endoftext|>"
 
 
-def stories_from_file(path: Path) -> list[str]:
+def stories_from_file(path: Path, options: CleanOptions = CleanOptions()) -> list[str]:
     text = path.read_text(encoding="utf-8-sig")
     text = unicodedata.normalize("NFC", text.replace("\r\n", "\n").replace("\r", "\n"))
     # An empty line separates complete stories; never split a story across sets.
@@ -30,7 +32,7 @@ def stories_from_file(path: Path) -> list[str]:
     seen: set[str] = set()
     stories = []
     for doc in docs:
-        doc = doc.strip()
+        doc = normalize_text(doc, options)
         if not doc or doc in seen:
             continue
         if EOT in doc:
@@ -78,6 +80,10 @@ def main() -> None:
     ap.add_argument("--val-fraction", type=float, default=0.05)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--force", action="store_true", help="Explicitly replace existing prepared bins")
+    ap.add_argument("--lowercase", action="store_true", help="Optional: lower-case all corpus text")
+    ap.add_argument("--strip-html", action="store_true", help="Optional: remove HTML tags")
+    ap.add_argument("--expand-teencode", action="store_true", help="Optional, ambiguous: expand common internet abbreviations")
+    ap.add_argument("--replacements", type=Path, help="Optional explicit JSON mapping for spelling/teencode; no default tone-style remapping")
     args = ap.parse_args()
 
     if not 512 <= args.vocab <= 65536:
@@ -87,7 +93,10 @@ def main() -> None:
     if not args.input.is_file():
         raise SystemExit(f"Input not found: {args.input}")
 
-    docs = stories_from_file(args.input)
+    options = CleanOptions(lowercase=args.lowercase, strip_html=args.strip_html,
+                           expand_teencode=args.expand_teencode,
+                           replacements=load_replacements(args.replacements) if args.replacements else None)
+    docs = stories_from_file(args.input, options)
     rng = random.Random(args.seed)
     rng.shuffle(docs)
     count_val = max(1, round(len(docs) * args.val_fraction))
@@ -135,6 +144,12 @@ def main() -> None:
         "train_tokens": len(train),
         "val_tokens": len(val),
         "normalization": "Unicode NFC",
+        "cleaning": {"lowercase": args.lowercase, "strip_html": args.strip_html,
+                     "expand_teencode": args.expand_teencode,
+                     "replacements_file": str(args.replacements) if args.replacements else None,
+                     "replacements_sha256": (hashlib.sha256(args.replacements.read_bytes()).hexdigest() if args.replacements else None),
+                     "tone_style": "preserved; no rewriting unless --replacements supplied",
+                     "numbers_emoji": "preserved"},
         "split": "by story, not by token",
     }
     (out / "metadata.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
