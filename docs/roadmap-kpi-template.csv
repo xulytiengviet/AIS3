@@ -1,0 +1,20 @@
+phase,track,metric,target,unit,measured,evidence_path,date,owner,reviewer,decision,notes
+R1,hardware,flash_psram_verified,100,%,,,,,,PENDING,"Detect actual chip/flash/PSRAM, attach board photo"
+R2,ais3,boot_10_trials,10,pass/10,,,,,,PENDING,"Same model + firmware, record serial logs"
+R2,ais3,model_hash_and_golden,100,%,,,,,,PENDING,Git SHA/model SHA/host parity
+R3,supermini,softap_web_on_2_clients,2,clients,,,,,,PENDING,4MB flash independent firmware
+R4,vi,tokenizer_roundtrip,100,%,,,,,,PENDING,Full decoded original on held-out text
+R4,vi,unknown_tokens,0,count,,,,,,PENDING,ByteLevel coverage
+R4,vi,validation_perplexity,lower_than_baseline,PPL,,,,,,PENDING,Same test set and tokenizer; no ungrounded absolute threshold
+R4,vi,grammar_consistency_blind,7,mean_score_of_10,,,,,,PENDING,"30+ blind prompts, two evaluators, proposed target"
+R5,audit,critical_unresolved_defects,0,count,,,,,,PENDING,Provide issue tracker link
+R6,kws,macro_f1,0.90,ratio,,,,,,PENDING,"Held-out speakers, per-class confusion matrix"
+R6,kws,important_command_recall,0.90,ratio,,,,,,PENDING,Each safety-critical class separately
+R6,kws,false_accepts_per_hour,1,max/hour,,,,,,PENDING,>=10 hours negative audio baseline; label confidence limitations
+R6,kws,p95_end_utterance_to_action,500,max_ms,,,,,,PENDING,"100+ commands, measure on device"
+R6,kws,feature_parity,predeclared_tolerance,max_error,,,,,,PENDING,Specify tolerance before testing
+R7,xiaozhi,speech_trials,20,pass/20,,,,,,PENDING,Known stable WLAN/backend
+R7,xiaozhi,reconnect_trials,3,pass/3,,,,,,PENDING,WiFi disconnected and restored
+R8,qa,rollback_trials,3,pass/3,,,,,,PENDING,Recovery from known-good firmware
+R8,qa,soak_test,24,hours,,,,,,PENDING,Report reset count and environmental conditions
+R9,release,mandatory_kpi_evidence,100,%,,,,,,PENDING,"Each critical KPI requires value, units, date and independent review"
