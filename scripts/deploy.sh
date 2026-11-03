@@ -71,6 +71,7 @@ case "$MODEL_KIND" in
     GOLDEN=${GOLDEN:-$ARTIFACTS/golden.txt}
     REQUIRED=("$MODEL" "$TOKENIZER")
     PART_OFFSET=0x110000
+    PART_MAX=$((0xEE0000))
     OPT_FLAGS='-O3'
     FETCH_HINT="  scripts/fetch_model.sh tinystories
   Downloads always install under artifacts/tinystories/. If a different path
@@ -86,6 +87,7 @@ case "$MODEL_KIND" in
     LAYOUT=${LAYOUT:-$ARTIFACTS/layout.json}
     REQUIRED=("$MODEL" "$TOKENIZER" "$VOCAB" "$LAYOUT")
     PART_OFFSET=0x110000
+    PART_MAX=$((0xEE0000))
     OPT_FLAGS='-O3'
     FETCH_HINT="  scripts/fetch_model.sh barista
   Downloads always install under artifacts/barista/. If a different path is
@@ -104,6 +106,7 @@ case "$MODEL_KIND" in
               "$ARTIFACTS/escape-gold.bin" "$ARTIFACTS/neurons.csv" "$ARTIFACTS/model_bundle.json")
     # partitions.csv gives the application 2 MiB, so the graph starts later.
     PART_OFFSET=0x210000
+    PART_MAX=$((0xDE0000))
     APP_MAX_BYTES=2097152
     # No floating-point contraction: host gold checks the portable C results,
     # and fused multiply-adds on the device would compute different ones.
@@ -221,6 +224,15 @@ done
 if [ "$missing" -ne 0 ]; then
   echo "required artifacts are missing; the expected paths are listed above" >&2
   echo "$FETCH_HINT" >&2
+  exit 1
+fi
+
+# Avoid writing past the selected flash data partition. A retrained tokenizer
+# or model can change the binary size, especially for Vietnamese.
+MODEL_SIZE=$(wc -c < "$MODEL" | tr -d ' ')
+if (( MODEL_SIZE > PART_MAX )); then
+  echo "model too large: $MODEL_SIZE bytes > partition limit $PART_MAX bytes ($MODEL_KIND)" >&2
+  echo "Choose a smaller configuration and re-export before flashing." >&2
   exit 1
 fi
 
