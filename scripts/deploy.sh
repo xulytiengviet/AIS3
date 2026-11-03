@@ -133,7 +133,8 @@ prepare_headers() {
       echo "=== generate $SKETCH/generated/vocab.h from $TOKENIZER ==="
       SHOW=wrote step 0 "generate vocab.h" \
         uv run --no-project --with 'tokenizers==0.23.1' python "$SKETCH/tools/generate_vocab.py" \
-        --tokenizer "$TOKENIZER" --out "$SKETCH/generated/vocab.h"
+        --tokenizer "$TOKENIZER" --out "$SKETCH/generated/vocab.h" \
+        --prompt "${TINYSTORIES_PROMPT:-Once upon a time}"
       ;;
     barista)
       echo "=== generate word tables from $VOCAB and $LAYOUT ==="
