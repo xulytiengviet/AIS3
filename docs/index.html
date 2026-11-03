@@ -14,17 +14,190 @@
 </style>
 <link rel="stylesheet" href="./lotus-theme.css">
 <link rel="stylesheet" href="./vi-lab.css">
+<link rel="stylesheet" href="./roadmap.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Đi tới nội dung hướng dẫn</a>
-<header class="head"><div class="wrap"><a class="brand" href="#top"><span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 48C18 35 18 23 32 8c14 15 14 27 0 40Z" fill="#b14c89"/><path d="M30 47C13 45 7 35 9 18c16 7 22 17 21 29Z" fill="#d47fa8"/><path d="M34 47c17-2 23-12 21-29-16 7-22 17-21 29Z" fill="#d47fa8"/><path d="M28 52C13 56 4 49 3 36c12-1 22 5 25 16ZM36 52c15 4 24-3 25-16-12-1-22 5-25 16Z" fill="#e9abc9"/><path d="M19 56h26" fill="none" stroke="#9b5689" stroke-linecap="round" stroke-width="3"/></svg></span> AIS3 <span class="muted small">&nbsp;/ SEN VIỆT LAB</span></a><nav aria-label="Điều hướng"><a href="#hardware">Phần cứng</a><a href="#install">Cài AIS3</a><a href="#supermini">Super Mini</a><a href="#vietnamese">Tiếng Việt</a><a href="#text-audit">Audit</a><a href="#voice-kws">Giọng nói KWS</a><a href="#xiaozhi">DIY XiaoZhi</a><a href="#troubleshoot">Xử lý lỗi</a></nav><a class="btn" href="https://github.com/xulytiengviet/AIS3" target="_blank" rel="noopener">Mã nguồn ↗</a></div></header>
+<header class="head"><div class="wrap"><a class="brand" href="#top"><span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 48C18 35 18 23 32 8c14 15 14 27 0 40Z" fill="#b14c89"/><path d="M30 47C13 45 7 35 9 18c16 7 22 17 21 29Z" fill="#d47fa8"/><path d="M34 47c17-2 23-12 21-29-16 7-22 17-21 29Z" fill="#d47fa8"/><path d="M28 52C13 56 4 49 3 36c12-1 22 5 25 16ZM36 52c15 4 24-3 25-16-12-1-22 5-25 16Z" fill="#e9abc9"/><path d="M19 56h26" fill="none" stroke="#9b5689" stroke-linecap="round" stroke-width="3"/></svg></span> AIS3 <span class="muted small">&nbsp;/ SEN VIỆT LAB</span></a><nav aria-label="Điều hướng"><a href="#roadmap">Lộ trình</a><a href="#hardware">Phần cứng</a><a href="#install">Cài AIS3</a><a href="#supermini">Super Mini</a><a href="#vietnamese">Tiếng Việt</a><a href="#text-audit">Audit</a><a href="#voice-kws">Giọng nói KWS</a><a href="#xiaozhi">DIY XiaoZhi</a><a href="#troubleshoot">Xử lý lỗi</a></nav><a class="btn" href="https://github.com/xulytiengviet/AIS3" target="_blank" rel="noopener">Mã nguồn ↗</a></div></header>
 <main class="wrap" id="main-content">
-<section class="hero" id="top"><div><div class="viet-intro"><span class="flag" aria-hidden="true">🇻🇳</span> Hướng dẫn tiếng Việt <span class="separator">•</span> Thiết kế cảm hứng hoa sen</div><div class="eyebrow" style="margin-top:19px">ESP32-S3 · Local AI · Nghiên cứu & DIY</div><h1>AI trên chip nhỏ.<br><em>Tự lắp. Tự chạy. Tự huấn luyện.</em></h1><p class="lead">Hướng dẫn tiếng Việt từ A–Z cho AIS3: chạy mô hình ngôn ngữ ngay trên ESP32-S3, tìm hiểu Super Mini 4 MB không PSRAM, đào tạo mô hình truyện kể tiếng Việt và làm trợ lý giọng nói XiaoZhi.</p><div class="actions"><a class="btn primary" href="#install">Bắt đầu cài đặt ↓</a><a class="btn" href="#vietnamese">Huấn luyện tiếng Việt</a><a class="btn" href="#xiaozhi">DIY XiaoZhi</a></div><div class="small muted">Hướng dẫn tham chiếu ba repository mã nguồn mở. Đây là trang tài liệu, không phải thiết bị giả lập có thể nạp chip từ xa.</div><div class="hero-meta"><a href="#hardware">◈ Chọn đúng bo</a><a href="#models">✦ Khám phá 3 demo</a><a href="#text-audit">🇻🇳 Chuẩn hóa tiếng Việt</a><a href="#voice-kws">🎙️ Nhận diện từ khóa</a></div></div><div class="board" aria-label="Minh họa ESP32-S3 với hoa sen cách điệu, màu tím sen hồng"><svg class="lotus-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" aria-hidden="true"><g stroke="#a55395" stroke-width="2" stroke-linejoin="round"><path d="M120 166C93 120 91 75 120 28c29 47 27 92 0 138Z" fill="#e5a7cf"/><path d="M115 174C65 151 58 109 65 70c39 18 59 53 50 104ZM125 174c50-23 57-65 50-104-39 18-59 53-50 104Z" fill="#f1c3db"/><path d="M108 183C57 188 31 153 29 114c48 5 77 26 79 69ZM132 183c51 5 77-30 79-69-48 5-77 26-79 69Z" fill="#eeb0d2"/><path d="M120 187c-48 0-82-14-103-42 8 51 48 77 103 77s95-26 103-77c-21 28-55 42-103 42Z" fill="#daa0c9"/></g></svg><svg class="lotus-symbol small" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" aria-hidden="true"><g stroke="#a55395" stroke-width="2" stroke-linejoin="round"><path d="M120 166C93 120 91 75 120 28c29 47 27 92 0 138Z" fill="#e5a7cf"/><path d="M115 174C65 151 58 109 65 70c39 18 59 53 50 104ZM125 174c50-23 57-65 50-104-39 18-59 53-50 104Z" fill="#f1c3db"/><path d="M108 183C57 188 31 153 29 114c48 5 77 26 79 69ZM132 183c51 5 77-30 79-69-48 5-77 26-79 69Z" fill="#eeb0d2"/><path d="M120 187c-48 0-82-14-103-42 8 51 48 77 103 77s95-26 103-77c-21 28-55 42-103 42Z" fill="#daa0c9"/></g></svg><span class="corner tl">✦ VIETNAMESE · EDGE AI</span><div class="board-stamp">🇻🇳 VIỆT NAM <span>NGHIÊN CỨU · DIY</span></div><div class="pcb"><div class="chip">ESP32-S3<br><small style="color:#eef9ff;font-size:12px">Xtensa LX7 × 2</small></div><small>FLASH ◦ PSRAM ◦ SRAM</small></div><span class="corner br">🪷 SEN VIỆT / SERIAL / Wi-Fi</span></div></section>
-<div class="mobile-jump"><label for="jump-section">🪷 CHUYỂN MỤC</label><select id="jump-section" aria-label="Chọn nội dung hướng dẫn"><option value="#overview">01 · Tổng quan</option><option value="#hardware">02 · Phần cứng</option><option value="#models">03 · Mô hình AIS3</option><option value="#install">04 · Cài đặt</option><option value="#wiring">05 · Đấu nối OLED</option><option value="#usage">06 · Cách sử dụng</option><option value="#supermini">07 · Super Mini</option><option value="#vietnamese">08 · Huấn luyện tiếng Việt</option><option value="#text-audit">09 · Audit văn bản</option><option value="#voice-kws">10 · Giọng nói KWS</option><option value="#xiaozhi">11 · DIY XiaoZhi</option><option value="#troubleshoot">12 · Xử lý lỗi</option><option value="#references">13 · Nguồn tham chiếu</option></select></div>
+<section class="hero" id="top"><div><div class="viet-intro"><span class="flag" aria-hidden="true">🇻🇳</span> Hướng dẫn tiếng Việt <span class="separator">•</span> Thiết kế cảm hứng hoa sen</div><div class="eyebrow" style="margin-top:19px">ESP32-S3 · Local AI · Nghiên cứu & DIY</div><h1>AI trên chip nhỏ.<br><em>Tự lắp. Tự chạy. Tự huấn luyện.</em></h1><p class="lead">Hướng dẫn tiếng Việt từ A–Z cho AIS3: chạy mô hình ngôn ngữ ngay trên ESP32-S3, tìm hiểu Super Mini 4 MB không PSRAM, đào tạo mô hình truyện kể tiếng Việt và làm trợ lý giọng nói XiaoZhi.</p><div class="actions"><a class="btn primary" href="#install">Bắt đầu cài đặt ↓</a><a class="btn" href="#vietnamese">Huấn luyện tiếng Việt</a><a class="btn" href="#xiaozhi">DIY XiaoZhi</a></div><div class="small muted">Hướng dẫn tham chiếu ba repository mã nguồn mở. Đây là trang tài liệu, không phải thiết bị giả lập có thể nạp chip từ xa.</div><div class="hero-meta"><a href="#roadmap">🗓️ Lộ trình & KPI</a><a href="#hardware">◈ Chọn đúng bo</a><a href="#models">✦ Khám phá 3 demo</a><a href="#text-audit">🇻🇳 Chuẩn hóa tiếng Việt</a><a href="#voice-kws">🎙️ Nhận diện từ khóa</a></div></div><div class="board" aria-label="Minh họa ESP32-S3 với hoa sen cách điệu, màu tím sen hồng"><svg class="lotus-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" aria-hidden="true"><g stroke="#a55395" stroke-width="2" stroke-linejoin="round"><path d="M120 166C93 120 91 75 120 28c29 47 27 92 0 138Z" fill="#e5a7cf"/><path d="M115 174C65 151 58 109 65 70c39 18 59 53 50 104ZM125 174c50-23 57-65 50-104-39 18-59 53-50 104Z" fill="#f1c3db"/><path d="M108 183C57 188 31 153 29 114c48 5 77 26 79 69ZM132 183c51 5 77-30 79-69-48 5-77 26-79 69Z" fill="#eeb0d2"/><path d="M120 187c-48 0-82-14-103-42 8 51 48 77 103 77s95-26 103-77c-21 28-55 42-103 42Z" fill="#daa0c9"/></g></svg><svg class="lotus-symbol small" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" aria-hidden="true"><g stroke="#a55395" stroke-width="2" stroke-linejoin="round"><path d="M120 166C93 120 91 75 120 28c29 47 27 92 0 138Z" fill="#e5a7cf"/><path d="M115 174C65 151 58 109 65 70c39 18 59 53 50 104ZM125 174c50-23 57-65 50-104-39 18-59 53-50 104Z" fill="#f1c3db"/><path d="M108 183C57 188 31 153 29 114c48 5 77 26 79 69ZM132 183c51 5 77-30 79-69-48 5-77 26-79 69Z" fill="#eeb0d2"/><path d="M120 187c-48 0-82-14-103-42 8 51 48 77 103 77s95-26 103-77c-21 28-55 42-103 42Z" fill="#daa0c9"/></g></svg><span class="corner tl">✦ VIETNAMESE · EDGE AI</span><div class="board-stamp">🇻🇳 VIỆT NAM <span>NGHIÊN CỨU · DIY</span></div><div class="pcb"><div class="chip">ESP32-S3<br><small style="color:#eef9ff;font-size:12px">Xtensa LX7 × 2</small></div><small>FLASH ◦ PSRAM ◦ SRAM</small></div><span class="corner br">🪷 SEN VIỆT / SERIAL / Wi-Fi</span></div></section>
+<div class="mobile-jump"><label for="jump-section">🪷 CHUYỂN MỤC</label><select id="jump-section" aria-label="Chọn nội dung hướng dẫn"><option value="#overview">01 · Tổng quan</option><option value="#roadmap">◈ Lộ trình & KPI</option><option value="#hardware">02 · Phần cứng</option><option value="#models">03 · Mô hình AIS3</option><option value="#install">04 · Cài đặt</option><option value="#wiring">05 · Đấu nối OLED</option><option value="#usage">06 · Cách sử dụng</option><option value="#supermini">07 · Super Mini</option><option value="#vietnamese">08 · Huấn luyện tiếng Việt</option><option value="#text-audit">09 · Audit văn bản</option><option value="#voice-kws">10 · Giọng nói KWS</option><option value="#xiaozhi">11 · DIY XiaoZhi</option><option value="#troubleshoot">12 · Xử lý lỗi</option><option value="#references">13 · Nguồn tham chiếu</option></select></div>
 <div class="stats"><div class="stat"><strong>28,9M</strong><span>Tham số lưu trữ · AIS3 TinyStories</span></div><div class="stat"><strong>9,88 tok/s</strong><span>AIS3 · kết quả gốc đã công bố</span></div><div class="stat"><strong>119K</strong><span>Tham số · Super Mini micro-LLM</span></div><div class="stat"><strong>3 hướng</strong><span>Offline LLM · Micro-LLM · Voice AI</span></div></div>
-<div class="layout"><aside class="sidebar"><b>Nội dung</b><a href="#overview">01 Tổng quan</a><a href="#hardware">02 Thông số & chọn bo</a><a href="#models">03 Chọn demo AIS3</a><a href="#install">04 Cài đặt AIS3</a><a href="#wiring">05 Đấu nối OLED</a><a href="#usage">06 Cách sử dụng</a><a href="#supermini">07 Super Mini AI</a><a href="#vietnamese">08 TinyStories tiếng Việt</a><a href="#text-audit">09 Audit tiếng Việt</a><a href="#voice-kws">10 Giọng nói KWS</a><a href="#xiaozhi">11 DIY XiaoZhi</a><a href="#troubleshoot">12 Xử lý lỗi</a><a href="#references">13 Nguồn tham chiếu</a><div class="aside">⚠️ Các bản firmware <b>AIS3 N16R8</b>, <b>Super Mini 4MB</b> và <b>XiaoZhi</b> không thay thế được cho nhau. Chọn đúng bo, phân vùng Flash và sơ đồ chân.</div></aside>
+<div class="layout"><aside class="sidebar"><b>Nội dung</b><a href="#overview">01 Tổng quan</a><a href="#roadmap">◈ Lộ trình & KPI</a><a href="#hardware">02 Thông số & chọn bo</a><a href="#models">03 Chọn demo AIS3</a><a href="#install">04 Cài đặt AIS3</a><a href="#wiring">05 Đấu nối OLED</a><a href="#usage">06 Cách sử dụng</a><a href="#supermini">07 Super Mini AI</a><a href="#vietnamese">08 TinyStories tiếng Việt</a><a href="#text-audit">09 Audit tiếng Việt</a><a href="#voice-kws">10 Giọng nói KWS</a><a href="#xiaozhi">11 DIY XiaoZhi</a><a href="#troubleshoot">12 Xử lý lỗi</a><a href="#references">13 Nguồn tham chiếu</a><div class="aside">⚠️ Các bản firmware <b>AIS3 N16R8</b>, <b>Super Mini 4MB</b> và <b>XiaoZhi</b> không thay thế được cho nhau. Chọn đúng bo, phân vùng Flash và sơ đồ chân.</div></aside>
 <div>
 <section class="block" id="overview"><div class="kicker">01 / Tổng quan hệ thống</div><h2>Ba hướng thực nghiệm, ba kiến trúc khác nhau</h2><div class="cards"><article class="card"><div class="emoji">🧠</div><h3>AIS3 · Offline LLM</h3><p>TinyStories, Barista, Fly chạy trên bo N16R8, không gửi câu hỏi lên máy chủ khi suy luận.</p><span class="mini">16MB Flash + 8MB PSRAM</span></article><article class="card"><div class="emoji">📶</div><h3>Super Mini · Web AI</h3><p>Micro-Transformer nhỏ hơn, SoftAP và HTTP web chat ngay trên chip, không cần PSRAM.</p><span class="mini">4MB Flash / 0MB PSRAM</span></article><article class="card"><div class="emoji">🎙️</div><h3>XiaoZhi · Voice AI</h3><p>Micro/loa, Wi‑Fi, nhận dạng tiếng nói và phản hồi âm thanh. Dịch vụ ASR/LLM/TTS thường chạy qua mạng.</p><span class="mini">Cần bo và profile âm thanh tương thích</span></article></div><div class="notice blue">AIS3 không tự trở thành XiaoZhi khi nạp cùng firmware. Kết hợp hai hệ cần thiết kế riêng bộ nhớ, phân vùng, codec, mạng và tác vụ thời gian thực.</div></section>
+
+<section class="block" id="roadmap">
+  <div class="kicker">Dự án / Implementation roadmap &amp; quality gates</div>
+  <div class="roadmap-heading">
+    <div><h2>🪷 Lộ trình triển khai AIS3: từ phần cứng đến nghiệm thu</h2>
+      <p>Thời gian chuẩn bị, xây dựng/huấn luyện, kết quả bàn giao và cách đo KPI theo từng nhánh <strong>AIS3, Super Mini, TinyStories Việt, KWS và XiaoZhi</strong>. Mỗi kết quả phải qua cổng kiểm soát chất lượng trước khi công bố.</p>
+    </div>
+    <div class="roadmap-docs"><a href="./ROADMAP_VI.md" target="_blank" rel="noopener">📖 Tài liệu chi tiết</a><a href="./roadmap-kpi-template.csv" download>⬇ Mẫu bảng KPI CSV</a></div>
+  </div>
+  <div class="roadmap-hero">
+    <h3>Quản trị bằng bằng chứng, không bằng dự đoán</h3>
+    <p>Các khoảng dưới đây là <strong>ước tính lập kế hoạch</strong>, không phải thời gian được đảm bảo. Chưa có số đo mới trên bo thì KPI ở trạng thái <strong>chưa xác nhận</strong>. Đặc biệt, mô hình nhận diện KWS tiếng Việt trên bo AIS3 vẫn cần phát triển firmware và đo thực địa.</p>
+    <div class="roadmap-overview">
+      <div class="roadmap-count"><strong>09</strong><span>Giai đoạn từ chuẩn bị tới nghiệm thu</span></div>
+      <div class="roadmap-count"><strong>05</strong><span>Tuyến kỹ thuật độc lập, có thể song song</span></div>
+      <div class="roadmap-count"><strong>G0–G4</strong><span>Cổng chất lượng phải có minh chứng</span></div>
+      <div class="roadmap-count"><strong>100%</strong><span>KPI bắt buộc phải có nhật ký và người kiểm</span></div>
+    </div>
+  </div>
+  <h3>Thời gian ước tính theo từng tuyến</h3>
+  <div class="roadmap-estimates" aria-label="Khoảng thời gian triển khai theo nhánh">
+    <div class="roadmap-estimate"><span class="roadmap-estimate-icon">🧠</span><strong>AIS3 nguyên bản</strong><span class="roadmap-estimate-time">1–2 ngày</span><small>N16R8 · tải model, nạp và chạy baseline; không train lại</small></div>
+    <div class="roadmap-estimate"><span class="roadmap-estimate-icon">📡</span><strong>Super Mini</strong><span class="roadmap-estimate-time">0,5–1,5 ngày</span><small>4MB · build, SoftAP và kiểm tra web nội bộ</small></div>
+    <div class="roadmap-estimate"><span class="roadmap-estimate-icon">🇻🇳</span><strong>TinyStories Việt</strong><span class="roadmap-estimate-time">2–5 tuần</span><small>Gồm corpus, huấn luyện thử 8–72 giờ máy và đo chất lượng</small></div>
+    <div class="roadmap-estimate"><span class="roadmap-estimate-icon">🎙️</span><strong>KWS giọng Việt</strong><span class="roadmap-estimate-time">3–8 tuần</span><small>Thu âm, train host, port DSP/TFLM và đo trên thiết bị</small></div>
+    <div class="roadmap-estimate"><span class="roadmap-estimate-icon">🔊</span><strong>XiaoZhi DIY</strong><span class="roadmap-estimate-time">1–3 ngày</span><small>Khi bo, codec và backend đã tương thích; không train LLM</small></div>
+  </div>
+  <p class="roadmap-quality-caption">Đơn vị: ngày làm việc và giờ máy mang tính tham khảo; lịch thực tế phụ thuộc dữ liệu có bản quyền, thiết bị, GPU, kết quả thử nghiệm và khối lượng sửa lỗi. Không cộng cứng các nhánh độc lập.</p>
+  <div class="roadmap-toolbar">
+    <div><div class="roadmap-toolbar-label">Lọc hạng mục theo tuyến triển khai</div><p class="roadmap-quality-caption">Đang hiển thị <strong id="roadmap-visible-count">9</strong> / 9 giai đoạn. Các bước audit, xử lý lỗi và nghiệm thu dùng chung.</p></div>
+    <div class="roadmap-filters" role="group" aria-label="Lọc các bước lộ trình">
+      <button type="button" data-route-filter="all" aria-pressed="true">Tất cả</button>
+      <button type="button" data-route-filter="ais3" aria-pressed="false">AIS3</button>
+      <button type="button" data-route-filter="supermini" aria-pressed="false">Super Mini</button>
+      <button type="button" data-route-filter="vi" aria-pressed="false">TinyStories Việt</button>
+      <button type="button" data-route-filter="kws" aria-pressed="false">Giọng nói KWS</button>
+      <button type="button" data-route-filter="xiaozhi" aria-pressed="false">XiaoZhi</button>
+    </div>
+  </div>
+  <div id="roadmap-filter-note" class="roadmap-filter-note" role="status">Tất cả 9 giai đoạn, gồm các tuyến triển khai độc lập.</div>
+  <div class="notice blue"><strong>Thời gian tuyến đã chọn:</strong> <span id="roadmap-selected-time">Kế hoạch nhiều tuyến — làm song song</span>. Thời lượng chưa bao gồm chờ linh kiện, quyền sử dụng corpus, hoặc các vòng huấn luyện bổ sung ngoài phạm vi thử nghiệm.</div>
+
+  <div class="roadmap-phase-list" aria-label="Giai đoạn thực hiện và tiêu chuẩn chấp nhận">
+    <article class="roadmap-phase" data-tracks="common" id="roadmap-r1">
+      <div class="roadmap-phase-code">R1</div><div class="roadmap-phase-main">
+        <div class="roadmap-phase-header"><h3>🔌 Phần cứng — lựa chọn bo và đấu nối an toàn</h3><a class="roadmap-phase-link" href="#hardware">Mở thông số phần cứng ↗</a></div>
+        <div class="roadmap-phase-grid"><div><label>Chuẩn bị</label><strong>0,5–1 ngày</strong></div><div><label>Build / Train</label><strong>Không huấn luyện</strong></div><div><label>Kiểm tra</label><strong>1–2 giờ kiểm nguồn, USB, chân I/O</strong></div></div>
+        <p><strong>Đầu ra:</strong> BOM, ảnh bo, xác nhận Flash/PSRAM, sơ đồ GPIO và sơ đồ nguồn cho riêng N16R8, Super Mini và XiaoZhi.</p>
+        <p class="roadmap-phase-accept"><b>KPI chấp nhận:</b> 100% bo được kiểm chứng thông số thực; nguồn đúng điện áp, dây USB dữ liệu tốt, không sử dụng nhầm sơ đồ chân hoặc model vượt khả năng Flash.</p>
+        <p class="roadmap-phase-gate">Cổng G0 · ảnh bo, boot log, bảng pinout và người xác nhận</p>
+      </div>
+    </article>
+    <article class="roadmap-phase" data-tracks="ais3 vi" id="roadmap-r2">
+      <div class="roadmap-phase-code">R2</div><div class="roadmap-phase-main">
+        <div class="roadmap-phase-header"><h3>🧠 Cài AIS3 — thiết lập baseline N16R8</h3><a class="roadmap-phase-link" href="#install">Hướng dẫn nạp AIS3 ↗</a></div>
+        <div class="roadmap-phase-grid"><div><label>Chuẩn bị</label><strong>2–5 giờ · CLI, thư viện, cổng USB</strong></div><div><label>Build / Flash</label><strong>1–3 giờ · không train lại</strong></div><div><label>Kiểm tra</label><strong>0,5–1 ngày · Serial, OLED, throughput</strong></div></div>
+        <p><strong>Đầu ra:</strong> log biên dịch/nạp, checksum, cấu hình model/partition, thông số SRAM–PSRAM, số tok/s thực và video/ảnh quan sát.</p>
+        <p class="roadmap-phase-accept"><b>KPI chấp nhận:</b> 10/10 lần khởi động không crash, đúng fingerprint và golden test; model vừa partition; so sánh số đo thực với benchmark nguồn mà không coi benchmark nguồn là kết quả mới.</p>
+        <p class="roadmap-phase-gate">Cổng G1 → G3 · commit, hash artifacts, cổng USB, serial log kiểm chứng</p>
+      </div>
+    </article>
+    <article class="roadmap-phase" data-tracks="supermini" id="roadmap-r3">
+      <div class="roadmap-phase-code">R3</div><div class="roadmap-phase-main">
+        <div class="roadmap-phase-header"><h3>📡 Super Mini — micro-model và web AI cục bộ</h3><a class="roadmap-phase-link" href="#supermini">Mở hướng dẫn Super Mini ↗</a></div>
+        <div class="roadmap-phase-grid"><div><label>Chuẩn bị</label><strong>2–4 giờ · bo 4MB, công cụ IDF/Arduino</strong></div><div><label>Build / Flash</label><strong>1–3 giờ · không train lại</strong></div><div><label>Kiểm tra</label><strong>2–4 giờ · SoftAP, HTTP, khởi động</strong></div></div>
+        <p><strong>Đầu ra:</strong> firmware Super Mini riêng, SoftAP và trang web chạy trong mạng nội bộ của bo.</p>
+        <p class="roadmap-phase-accept"><b>KPI chấp nhận:</b> 10/10 boot; ít nhất hai thiết bị thử truy cập trang cục bộ; không nạp model AIS3 ~14,9MB lên chip Flash 4MB/không PSRAM.</p>
+        <p class="roadmap-phase-gate">Cổng G0 → G3 · ảnh cấu hình Flash, build log và kiểm thử mạng LAN</p>
+      </div>
+    </article>
+    <article class="roadmap-phase" data-tracks="vi" id="roadmap-r4">
+      <div class="roadmap-phase-code">R4</div><div class="roadmap-phase-main">
+        <div class="roadmap-phase-header"><h3>🇻🇳 Tiếng Việt — corpus, tokenizer và huấn luyện PLE</h3><a class="roadmap-phase-link" href="#vietnamese">Huấn luyện TinyStories Việt ↗</a></div>
+        <div class="roadmap-phase-grid"><div><label>Chuẩn bị dữ liệu</label><strong>3–10 ngày · tokenizer 0,5–3 giờ</strong></div><div><label>Huấn luyện thử</label><strong>8–72 giờ máy PC/GPU (ước lượng)</strong></div><div><label>Đánh giá / Export</label><strong>2–5 ngày · PPL, INT4, bản trên chip</strong></div></div>
+        <p><strong>Đầu ra:</strong> corpus có quyền sử dụng, bộ train/validation, tokenizer và SHA, checkpoint PyTorch, INT4 và biên bản sinh truyện.</p>
+        <p class="roadmap-phase-accept"><b>KPI chấp nhận:</b> round-trip UTF-8 = 100%, unknown = 0 theo ByteLevel; PPL cải thiện trên cùng tập đối chứng; ≥30 prompt chấm mù Grammar/Consistency và model vừa đúng phân vùng Flash.</p>
+        <p class="roadmap-phase-gate">Cổng G1 → G3 · không tuyên bố chất lượng mạch lạc trước khi có dữ liệu, checkpoint và điểm đánh giá thực</p>
+      </div>
+    </article>
+    <article class="roadmap-phase" data-tracks="common" id="roadmap-r5">
+      <div class="roadmap-phase-code">R5</div><div class="roadmap-phase-main">
+        <div class="roadmap-phase-header"><h3>🔎 Audit — kiểm toán dữ liệu, mô hình và nguồn gốc</h3><a class="roadmap-phase-link" href="#text-audit">Phòng lab Audit tiếng Việt ↗</a></div>
+        <div class="roadmap-phase-grid"><div><label>Chuẩn bị</label><strong>0,5–2 ngày ban đầu</strong></div><div><label>Huấn luyện</label><strong>Không · chạy mỗi lần thay model</strong></div><div><label>Kiểm tra</label><strong>CI, token, checksum, golden, test độc lập</strong></div></div>
+        <p><strong>Đầu ra:</strong> báo cáo chất lượng JSON/CSV, các bản hash, CI, biên bản lỗi và tập kết quả có thể tái lập.</p>
+        <p class="roadmap-phase-accept"><b>KPI chấp nhận:</b> không có blocker chưa giải quyết; train/val/test không rò rỉ; tính nguyên vẹn Unicode hoặc MFCC host–device được đối chiếu với dung sai công bố trước thử.</p>
+        <p class="roadmap-phase-gate">Cổng G1/G2/G3 · tài liệu bằng chứng, người review, ngày và phiên bản toolchain</p>
+      </div>
+    </article>
+    <article class="roadmap-phase" data-tracks="kws" id="roadmap-r6">
+      <div class="roadmap-phase-code">R6</div><div class="roadmap-phase-main">
+        <div class="roadmap-phase-header"><h3>🎙️ Giọng nói KWS — MFCC, CNN INT8 và ESP32-S3</h3><a class="roadmap-phase-link" href="#voice-kws">Mở phòng lab KWS ↗</a></div>
+        <div class="roadmap-phase-grid"><div><label>Thu âm / Gán nhãn</label><strong>4–14 ngày · nhiều người nói</strong></div><div><label>Train / Port</label><strong>CNN 0,5–6 giờ; DSP/TFLM 5–15 ngày công</strong></div><div><label>Đánh giá thực địa</label><strong>3–7 ngày · ồn, độ trễ, nhầm lệnh</strong></div></div>
+        <p><strong>Đầu ra:</strong> dữ liệu WAV theo speaker, model INT8, manifest MFCC, firmware nguyên mẫu (cần phát triển) và ma trận nhầm lẫn.</p>
+        <p class="roadmap-phase-accept"><b>KPI đề xuất (chưa đạt):</b> Macro-F1 ≥0,90; recall lệnh quan trọng ≥0,90; false accepts ≤1/giờ theo kịch bản; P95 từ cuối câu lệnh đến tác động ≤500ms. Đo trực tiếp thiết bị và định nghĩa mốc thời gian rõ ràng.</p>
+        <p class="roadmap-phase-gate">Cổng G2 → G3 · 94% / 368ms thuộc bài báo tham khảo, không được ghi là benchmark AIS3</p>
+      </div>
+    </article>
+    <article class="roadmap-phase" data-tracks="xiaozhi" id="roadmap-r7">
+      <div class="roadmap-phase-code">R7</div><div class="roadmap-phase-main">
+        <div class="roadmap-phase-header"><h3>🔊 DIY XiaoZhi — micro, loa, Wi-Fi và trò chuyện</h3><a class="roadmap-phase-link" href="#xiaozhi">Hướng dẫn XiaoZhi ↗</a></div>
+        <div class="roadmap-phase-grid"><div><label>Chuẩn bị</label><strong>0,5–1 ngày · bo, mic/loa, dịch vụ</strong></div><div><label>Build / Flash</label><strong>2–6 giờ · không train LLM trên bo</strong></div><div><label>Kiểm tra</label><strong>0,5–1,5 ngày · audio/reconnect</strong></div></div>
+        <p><strong>Đầu ra:</strong> sơ đồ DIY đúng bo, ứng dụng thoại với kích hoạt thực và log ASR → LLM → TTS qua backend tương ứng.</p>
+        <p class="roadmap-phase-accept"><b>KPI đề xuất:</b> 20/20 câu thoại thử có phản hồi, 3/3 lần phục hồi sau ngắt Wi-Fi, đo thời gian phản hồi, không lộ khóa hoặc mã kích hoạt trong source/log.</p>
+        <p class="roadmap-phase-gate">Cổng G0 → G4 · phụ thuộc firmware, board profile và mạng; không phải AI TinyStories offline</p>
+      </div>
+    </article>
+    <article class="roadmap-phase" data-tracks="common" id="roadmap-r8">
+      <div class="roadmap-phase-code">R8</div><div class="roadmap-phase-main">
+        <div class="roadmap-phase-header"><h3>🛠️ Xử lý lỗi — kiểm thử hồi phục và độ bền</h3><a class="roadmap-phase-link" href="#troubleshoot">Tra cứu và sửa lỗi ↗</a></div>
+        <div class="roadmap-phase-grid"><div><label>Lập checklist</label><strong>0,5–1 ngày</strong></div><div><label>Sửa lỗi</label><strong>1–3 ngày hoặc lâu hơn tùy blocker</strong></div><div><label>Stress test</label><strong>24 giờ soak + 3 lần rollback</strong></div></div>
+        <p><strong>Đầu ra:</strong> issue register, nhật ký USB/Flash/PSRAM/Unicode/MFCC/codec, bản firmware dự phòng và thủ tục rollback.</p>
+        <p class="roadmap-phase-accept"><b>KPI đề xuất:</b> 0 lỗi blocker, 3/3 thao tác rollback thành công, một lượt chạy bền 24 giờ không reset bất thường; bất kỳ crash nào cũng phải điều tra nguyên nhân.</p>
+        <p class="roadmap-phase-gate">Cổng G3/G4 · chỉ đánh dấu đạt nếu có log 24h, ảnh phiên bản và minh chứng khôi phục</p>
+      </div>
+    </article>
+    <article class="roadmap-phase" data-tracks="common" id="roadmap-r9">
+      <div class="roadmap-phase-code">R9</div><div class="roadmap-phase-main">
+        <div class="roadmap-phase-header"><h3>📋 Nghiệm thu — xác nhận kết quả và phát hành</h3><a class="roadmap-phase-link" href="./ROADMAP_VI.md" target="_blank" rel="noopener">Tiêu chuẩn nghiệm thu ↗</a></div>
+        <div class="roadmap-phase-grid"><div><label>Chuẩn bị hồ sơ</label><strong>0,5–1 ngày</strong></div><div><label>Huấn luyện</label><strong>Không · khóa build &amp; model</strong></div><div><label>Đánh giá</label><strong>KPI thực đo và người review độc lập</strong></div></div>
+        <p><strong>Đầu ra:</strong> release manifest, bảng KPI đo được, hash, licenses, bằng chứng, issue tồn đọng, hướng dẫn cập nhật/rollback.</p>
+        <p class="roadmap-phase-accept"><b>KPI chấp nhận:</b> 100% chỉ số bắt buộc có giá trị và đơn vị thực đo, phiên bản, thời gian, tệp minh chứng và người xác nhận; những chỉ số không đạt phải có quyết định xử lý rõ ràng.</p>
+        <p class="roadmap-phase-gate">Cổng G4 · chỉ công bố “đạt” sau khi reviewer nghiệm thu hồ sơ, không dựa vào checklist tự tích</p>
+      </div>
+    </article>
+  </div>
+  <h3>G0–G4 · Cổng kiểm soát chất lượng bắt buộc</h3>
+  <div class="roadmap-qa-grid">
+    <div class="roadmap-qa-item"><strong>G0</strong><b>Khả thi</b><p>Phần cứng đúng, model vừa Flash/PSRAM; dữ liệu và linh kiện có nguồn hợp lệ.</p></div>
+    <div class="roadmap-qa-item"><strong>G1</strong><b>Tái lập</b><p>Commit, hash corpus/model, seed, phiên bản toolchain, tập train/val/test tách biệt.</p></div>
+    <div class="roadmap-qa-item"><strong>G2</strong><b>Chất lượng host</b><p>Test Unicode/PPL cho LLM; F1/recall/confusion matrix cho KWS; kiểm tra nhiễu/OOD.</p></div>
+    <div class="roadmap-qa-item"><strong>G3</strong><b>Đo trên bo thật</b><p>Host↔MCU parity, peak heap/arena, Flash, độ trễ P95 và tốc độ thực.</p></div>
+    <div class="roadmap-qa-item"><strong>G4</strong><b>Phát hành</b><p>24h soak, log crash, rollback, version/giấy phép và người nghiệm thu.</p></div>
+  </div>
+  <h3>Lịch triển khai tham khảo theo tuần</h3>
+  <div class="roadmap-matrix">
+    <table aria-label="Lịch đề xuất theo tuần"><thead><tr><th>Công việc / Tuần</th><th>Tuần 1</th><th>Tuần 2</th><th>Tuần 3</th><th>Tuần 4–5</th><th>Tuần 6+</th></tr></thead>
+    <tbody>
+      <tr><td>Phần cứng, AIS3, Super Mini</td><td class="active-cell">●</td><td class="idle-cell">—</td><td class="idle-cell">—</td><td class="idle-cell">—</td><td class="idle-cell">—</td></tr>
+      <tr><td>Corpus Việt, tokenizer, dữ liệu KWS</td><td class="idle-cell">—</td><td class="active-cell">●</td><td class="active-cell">●</td><td class="idle-cell">—</td><td class="idle-cell">—</td></tr>
+      <tr><td>Train PLE &amp; CNN trên PC/GPU</td><td class="idle-cell">—</td><td class="idle-cell">—</td><td class="active-cell">●</td><td class="active-cell">●</td><td class="idle-cell">—</td></tr>
+      <tr><td>MFCC/TFLM trên ESP32, audit và test ồn</td><td class="idle-cell">—</td><td class="idle-cell">—</td><td class="idle-cell">—</td><td class="active-cell">●</td><td class="active-cell">●</td></tr>
+      <tr><td>XiaoZhi độc lập (khi có bo/backend)</td><td class="active-cell">◇</td><td class="active-cell">◇</td><td class="active-cell">◇</td><td class="active-cell">◇</td><td class="idle-cell">—</td></tr>
+      <tr><td>Soak, rollback và nghiệm thu</td><td class="idle-cell">—</td><td class="idle-cell">—</td><td class="idle-cell">—</td><td class="active-cell">◇</td><td class="active-cell">●</td></tr>
+    </tbody></table>
+  </div>
+  <p class="roadmap-quality-caption">● thời điểm dự kiến tập trung; ◇ có thể làm song song/tùy nguồn lực. Tuần 6+ không hàm ý có thời hạn hoàn thành chắc chắn.</p>
+  <h3>Ma trận đánh giá KPI và phương pháp đo</h3>
+  <div class="roadmap-matrix"><table aria-label="Mục tiêu KPI và cách đo"><thead><tr><th>Nhánh</th><th>KPI mục tiêu đề xuất</th><th>Đo và xác minh bằng</th><th>Trạng thái</th></tr></thead><tbody>
+    <tr><td>Phần cứng / AIS3</td><td>10/10 boot, 0 lỗi tràn phân vùng, hash/golden đạt</td><td>Serial log, dump cấu hình bo, SHA-256, báo cáo miễn lỗi</td><td>Chờ đo</td></tr>
+    <tr><td>Tiếng Việt</td><td>Round-trip 100%; unknown 0; PPL so baseline; ≥30 prompt mù</td><td>Tokenizer audit JSON, validation loss và hội đồng chấm truyện</td><td>Chờ train/đo</td></tr>
+    <tr><td>KWS</td><td>Macro-F1 ≥0,90; recall quan trọng ≥0,90; false accepts ≤1/giờ</td><td>Held-out speaker test, confusion matrix, ≥10h âm thanh âm tính</td><td>Chờ dữ liệu/firmware</td></tr>
+    <tr><td>KWS trên bo</td><td>P95 kết thúc câu→tác động ≤500ms; feature parity trong dung sai định trước</td><td>≥100 lệnh trên board, timestamps, golden WAV, đo peak RAM</td><td>Chờ firmware thực nghiệm</td></tr>
+    <tr><td>XiaoZhi</td><td>20/20 phiên thoại, 3/3 lần reconnect, không lộ credentials</td><td>Log ASR–LLM–TTS, mất mạng có kiểm soát, kiểm tra cấu hình</td><td>Chờ kiểm thử thiết bị</td></tr>
+    <tr><td>Chất lượng / release</td><td>0 blocker, rollback 3/3, 24h soak, bằng chứng 100% KPI bắt buộc</td><td>Issue tracker, log soak, hash release, người review độc lập</td><td>Chưa nghiệm thu</td></tr>
+  </tbody></table></div>
+  <div class="roadmap-checklist">
+    <h3>✅ Checklist chứng cứ trước nghiệm thu</h3>
+    <p class="vi-note">Tự đánh dấu các bằng chứng đã chuẩn bị. Đây chỉ là ghi chú <strong>trong phiên trình duyệt</strong>, không phải kết quả CI, chứng nhận hay KPI thực tế.</p>
+    <div class="roadmap-check-grid">
+      <label><input type="checkbox" data-roadmap-evidence> <span>G0: Có BOM, ảnh bo, sơ đồ nối và thông số Flash/PSRAM được kiểm tra.</span></label>
+      <label><input type="checkbox" data-roadmap-evidence> <span>G1: Có SHA-256, seed, phiên bản toolchain, dữ liệu tách biệt và log build.</span></label>
+      <label><input type="checkbox" data-roadmap-evidence> <span>G2: Có test host (PPL hoặc F1/recall, dữ liệu holdout và kết quả định lượng).</span></label>
+      <label><input type="checkbox" data-roadmap-evidence> <span>G3: Có log trên bo thật, parity, latency, RAM/Flash, thử nghiệm lỗi và nhiễu.</span></label>
+      <label><input type="checkbox" data-roadmap-evidence> <span>G4: Có soak/rollback, biên bản reviewer, giấy phép và release manifest.</span></label>
+    </div>
+    <div class="roadmap-checkbar"><span id="roadmap-evidence-bar"></span></div>
+    <p class="roadmap-quality-caption" id="roadmap-evidence-count" role="status">0/5 mục tự đánh dấu đã chuẩn bị chứng cứ.</p>
+    <div class="roadmap-docs" style="margin-top:14px"><a href="./roadmap-kpi-template.csv" download>⬇ Tải CSV để ghi KPI thực đo</a> <button type="button" class="vi-lab-button" id="roadmap-print">🖨 In / Lưu PDF kế hoạch</button></div>
+  </div>
+  <div class="notice red"><strong>Nguyên tắc nghiệm thu:</strong> “Có mã nguồn” không đồng nghĩa “đã đạt 94%”, “đã huấn luyện” không đồng nghĩa “đã chạy trên chip”. Số 94% và 368ms là kết quả nghiên cứu KWS tham khảo; mục tiêu KPI được đề xuất ở đây phải đo độc lập trên AIS3 và công khai cách đo.</div>
+</section>
+
 <section class="block" id="hardware"><div class="kicker">02 / Hardware specification</div><h2>Chọn đúng ESP32-S3 trước khi nạp</h2><p>ESP32-S3 dùng CPU hai lõi Xtensa LX7 lên đến 240 MHz, Wi‑Fi 2,4 GHz và Bluetooth LE. Dung lượng Flash/PSRAM <b>phụ thuộc biến thể bo mạch</b>, không suy ra từ chữ “ESP32-S3”.</p><div class="panel table-scroll"><table><thead><tr><th>Thông số</th><th>AIS3 · N16R8</th><th>ESP32-S3 Super Mini tham chiếu</th><th>XiaoZhi Việt hóa</th></tr></thead><tbody><tr><td>Vi điều khiển</td><td>ESP32-S3, 2× LX7 @ 240 MHz</td><td>ESP32-S3, 2× LX7 @ 240 MHz</td><td>ESP32-S3 và bo tương thích trong dự án</td></tr><tr><td>Flash / PSRAM</td><td>16 MB / 8 MB</td><td>4 MB / 0 MB cần thiết; một số bo bán ra khác cấu hình</td><td>Phụ thuộc profile và loại bo, phải xem firmware cụ thể</td></tr><tr><td>SRAM trong chip</td><td>Khoảng 512 KB vật lý, không phải toàn bộ đều trống</td><td>Mô hình dùng tối đa 161 KB theo tài liệu tác giả</td><td>Phụ thuộc âm thanh, OTA và thành phần build</td></tr><tr><td>Model</td><td>28,9M TinyStories; 8,9M Barista; Fly 48.311 neuron</td><td>118.784 tham số, 3 lớp, d=64, 4 heads</td><td>Mô hình lớn qua backend; firmware điều phối âm thanh/kết nối</td></tr><tr><td>I/O</td><td>USB Serial, OLED I²C hoặc TFT theo sketch</td><td>USB Serial, SoftAP + HTTP web UI</td><td>Micro I²S, loa/I²S DAC, nút, OLED/LCD theo bo</td></tr><tr><td>Mạng khi chạy</td><td>Không bắt buộc</td><td>Không bắt buộc; điện thoại vào Wi‑Fi nội bộ</td><td>Thông thường cần Wi‑Fi/Internet và cấu hình dịch vụ</td></tr></tbody></table></div><div class="notice red"><b>Không tương thích trực tiếp:</b> tệp model AIS3 khoảng 14,9 MB không thể chứa trong bo Super Mini Flash 4 MB. Tuyệt đối không dùng phân vùng N16R8 cho bản 4 MB. Trước khi mua, kiểm tra chính xác ký hiệu chip, dung lượng Flash/PSRAM và chân GPIO thực tế.</div><div class="info-grid"><div class="metric"><strong>14,9 MB</strong><span>Trọng số TinyStories của AIS3 (int4)</span></div><div class="metric"><strong>1,44 MB</strong><span>Firmware Super Mini theo số liệu nguồn tham chiếu</span></div></div></section>
 <section class="block" id="models"><div class="kicker">03 / Mô hình AIS3</div><h2>Chọn một chương trình để triển khai</h2><div class="tabs" role="tablist" aria-label="Mô hình AIS3"><button class="tab" data-model="tinystories" role="tab" aria-selected="true">✨ TinyStories</button><button class="tab" data-model="barista" role="tab" aria-selected="false">☕ Barista</button><button class="tab" data-model="fly" role="tab" aria-selected="false">🪰 Fly</button></div><div class="panel twocol"><div><span class="mini" id="model-pill">Sinh truyện · Offline</span><h3 id="model-name">TinyStories — 28,9 triệu tham số</h3><p id="model-text" class="muted">Sinh khoảng 200 token từ lời mở đầu cố định khi khởi động. Đây không phải chatbot hỏi đáp.</p><div class="terminal"><div class="bar"><div class="dots"><i></i><i></i><i></i></div><span>Terminal / tải & nạp</span><button type="button" data-copy="model-cmd">Sao chép</button></div><pre id="model-cmd">scripts/fetch_model.sh tinystories
 scripts/deploy.sh tinystories</pre></div></div><div><h3>Quan sát trên thiết bị</h3><div class="panel" style="padding:16px;background:#07101c"><div class="kicker" id="screen-heading">ESP32-S3 PLE TinyLM</div><p id="screen-content" style="font:13px/1.6 monospace;color:#dbffe9">Once upon a time, there was a little girl named Lily...</p></div><p id="model-tip" class="small muted">Khởi động → sinh truyện → in tốc độ; nhấn RESET để chạy lại.</p></div></div><div class="notice">Board chỉ chứa <b>một</b> model tại một thời điểm. Việc chọn mô hình khác và chạy deploy sẽ ghi đè nội dung phân vùng model và firmware cũ.</div></section>
@@ -253,4 +426,5 @@ renderModel();renderOS();renderSuper();renderTrain();
 </script>
 <script src="./vi-lab.js" defer></script>
 <script src="./kws-capture.js" defer></script>
+<script src="./roadmap.js" defer></script>
 </body></html>
