@@ -159,7 +159,22 @@ ko dc j r =)) 🇻🇳 👩‍💻
     <div class="vi-lab-fact"><span class="sign">🧪</span><strong>Kiểm chứng</strong><p>Macro-F1, confusion matrix, recall theo từng lệnh, sai kích hoạt/giờ, parity MFCC, thời gian tổng và RAM arena.</p></div>
   </div>
   <div class="notice red"><strong>Trạng thái dự án:</strong> AIS3 đã bổ sung mã huấn luyện và kiểm tra KWS trên PC, nhưng <strong>chưa có firmware KWS chạy độc lập trong repository AIS3</strong> và chưa có mô hình tiếng Việt mới đã được huấn luyện. Cần dữ liệu ghi âm, port DSP/TFLite Micro, xác nhận toán tử và đo trên bo trước khi nói tính năng đã chạy được.</div>
-  <h3>Huấn luyện CNN KWS tiếng Việt, xuất TFLite INT8</h3>
+  <div class="vi-lab-form" id="kws-record-tool">
+  <h3>🎙️ Tự thu bộ dữ liệu giọng nói tiếng Việt</h3>
+  <p class="vi-note">Công cụ bổ sung cho giai đoạn <strong>thu thập dữ liệu</strong>, không phải nhận diện từ khóa. Chỉ ghi âm khi bạn bấm nút và cấp quyền micro; ghi âm được chuyển thành WAV 16 kHz PCM16 mono trong trình duyệt và tải xuống máy bạn, không gửi lên máy chủ. Chỉ thu người đã đồng ý.</p>
+  <div class="vi-inputs">
+    <div class="vi-field"><label for="kws-speaker-id">Mã người nói (dùng chung ở mọi nhãn)</label><input id="kws-speaker-id" type="text" inputmode="latin" value="nguoi_01" maxlength="40" pattern="[A-Za-z0-9_-]+" placeholder="nguoi_01" style="border:1px solid #d7bad6;border-radius:10px;padding:11px;background:#fff;color:#633f65"></div>
+    <div class="vi-field"><label for="kws-clip-label">Nhãn từ khóa âm thanh</label><select id="kws-clip-label" style="border:1px solid #d7bad6;border-radius:10px;padding:11px;background:#fff;color:#633f65"><option value="bat_den">Bật đèn</option><option value="tat_den">Tắt đèn</option><option value="bat_quat">Bật quạt</option><option value="tat_quat">Tắt quạt</option><option value="unknown">Từ không liên quan</option><option value="silence">Yên lặng / tiếng nền</option></select></div>
+  </div>
+  <div class="vi-lab-actions">
+    <button type="button" class="vi-lab-button primary" id="kws-record-button">🎙️ Ghi mẫu 1 giây</button>
+    <button type="button" class="vi-lab-button" id="kws-download-button" disabled>⬇ Tải WAV</button>
+    <audio id="kws-local-player" controls preload="none" hidden aria-label="Nghe lại bản ghi cục bộ" style="max-width:100%;height:39px"></audio>
+  </div>
+  <p id="kws-record-status" role="status" class="vi-note">Yêu cầu Chrome/Edge/Firefox tương thích, HTTPS và quyền micro. Tính năng có thể không chạy trên mọi thiết bị.</p>
+  <div class="notice blue"><strong>Quy tắc dữ liệu:</strong> Sau khi tải, đặt tệp vào <code>data/kws_vi/nhãn/IDngười__lầnghi.wav</code>. Luôn giữ một ID người nói trên mọi nhãn, chia train/val/test theo người nói và thu nhiều giọng, môi trường ồn, lớp unknown/silence. Ghi âm một lần không đủ huấn luyện.</div>
+</div>
+<h3>Huấn luyện CNN KWS tiếng Việt, xuất TFLite INT8</h3>
   <p>Cài thêm TensorFlow trong môi trường Python của AIS3. Đầu vào cần nhiều tệp WAV thực tế theo người nói, có lớp <code>unknown</code> và <code>silence</code>. Script từ chối nếu một lớp thiếu train/val/test độc lập.</p>
   <div class="terminal"><div class="bar"><div class="dots"><i></i><i></i><i></i></div><span>Host KWS · training &amp; export</span><button type="button" data-copy="kws-train-code">Sao chép</button></div><pre id="kws-train-code">uv sync
 uv pip install "tensorflow&gt;=2.16,&lt;3"
@@ -237,4 +252,5 @@ renderModel();renderOS();renderSuper();renderTrain();
 })();
 </script>
 <script src="./vi-lab.js" defer></script>
+<script src="./kws-capture.js" defer></script>
 </body></html>
