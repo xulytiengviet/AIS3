@@ -1,0 +1,44 @@
+name: AIS3 roadmap UI and KPI QA
+
+on:
+  push:
+    paths:
+      - 'docs/index.html'
+      - 'docs/roadmap.css'
+      - 'docs/roadmap.js'
+      - 'docs/ROADMAP_VI.md'
+      - 'docs/roadmap-kpi-template.csv'
+      - 'tests/test_roadmap_site.py'
+      - '.github/workflows/roadmap-qa.yml'
+  pull_request:
+    paths:
+      - 'docs/index.html'
+      - 'docs/roadmap.css'
+      - 'docs/roadmap.js'
+      - 'docs/ROADMAP_VI.md'
+      - 'docs/roadmap-kpi-template.csv'
+      - 'tests/test_roadmap_site.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  roadmap-static-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate roadmap stages, anchor links and KPI CSV
+        run: python -m unittest discover -s tests -p 'test_roadmap_site.py' -v
+      - name: Validate client scripts syntax
+        run: |
+          node --check docs/roadmap.js
+          node --check docs/vi-lab.js
+          node --check docs/kws-capture.js
